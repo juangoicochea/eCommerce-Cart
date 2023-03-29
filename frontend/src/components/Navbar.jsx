@@ -12,9 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom'
 
-const pages = ['Shop', 'Cart'];
-
-export const Navbar = () => {
+export const Navbar = ( { setCartOpen } ) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -77,13 +75,14 @@ export const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link to={`/${ page != 'Shop' ? page : '' }`}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
+              <MenuItem key='Shop' onClick={handleCloseNavMenu}>
+                <Link to='/Shop'>
+                  <Typography textAlign="center">Shop</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem key='Cart' onClick={handleCloseNavMenu}>
+                <Button onClick={() => setCartOpen( true )}>Cart</Button>
+              </MenuItem>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -106,17 +105,22 @@ export const Navbar = () => {
             eCommerce
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Link to={`/${ page != 'Shop' ? page : '' }`}>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
-              </Link>
-            ))}
+            <Link to='/Shop'>
+              <Button
+                key='Shop'
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Shop
+              </Button>
+            </Link>
+              <Button
+                key='Cart'
+                onClick={() => setCartOpen( true )}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Cart
+              </Button>
           </Box>
         </Toolbar>
       </Container>

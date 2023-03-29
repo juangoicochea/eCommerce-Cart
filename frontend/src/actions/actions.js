@@ -2,11 +2,46 @@ import axios from 'axios';
 
 export const getProducts = () => {
     return async ( dispatch ) => {
-        console.log('Entra a la accion')
         const json = await axios('/products');
         dispatch( {
             type: 'GET_PRODUCTS',
             payload: json.data
         });
+    }
+}
+
+export const addToCart = ( payload ) => {
+    return {
+        type: 'ADD_TO_CART',
+        payload
+    }
+}
+
+export const incrementQuantity = ( payload ) => {
+    return {
+        type: 'INCREMENT_QUANTITY',
+        payload
+    }
+}
+
+export const decrementQuantity = ( payload ) => {
+    return {
+        type: 'DECREMENT_QUANTITY',
+        payload
+    }
+}
+
+export const deletCartItem = ( payload ) => {
+    console.log('Enter to delete action')
+    return {
+        type: 'DELET_CART_ITEM',
+        payload
+    }
+}
+
+export const saveCart = ( payload ) => {
+    return async () => {
+        const json = await axios.post( '/carts', payload );
+        return json;
     }
 }

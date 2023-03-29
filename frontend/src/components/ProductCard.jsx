@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../actions/actions';
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,8 +9,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export const ProductCard = ({ id, title, image, price }) => {
+  const dispatch = useDispatch();
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardMedia
         sx={{ height: 140 }}
         image={ image }
@@ -19,11 +23,16 @@ export const ProductCard = ({ id, title, image, price }) => {
           { title }
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          { price }
+        USD { price }
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to Cart</Button>
+        <Button
+          onClick={() =>
+            dispatch(addToCart({
+              id, title, image, price
+            }))}
+          size="small">Add to Cart</Button>
       </CardActions>
     </Card>
   );

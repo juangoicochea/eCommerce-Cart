@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { conn } = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
+const cartsRoutes = require('./routes/cartsRoutes');
 const { DOMAIN } = process.env;
 
 const app = express();
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/products', productRoutes);
+app.use('/api/carts', cartsRoutes);
 
 const PORT = process.env.PORT || 5000;
 
