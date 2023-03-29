@@ -18,7 +18,7 @@ function App() {
         <main>
           <Routes>
             <Route exact path='/' element={<HomeScreen cartOpen={ cartOpen } setCartOpen={ setCartOpen } />} />
-            <Route exact path='/cartsaved' element={<CartsSaved />} />
+            <Route exact path='/cartsaved' element={<CartsSaved cartOpen={ cartOpen } setCartOpen={ setCartOpen } />} />
           </Routes>
         </main>
       </BrowserRouter>

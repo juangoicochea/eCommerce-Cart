@@ -6,7 +6,7 @@ import { ProductCard } from '../components/ProductCard';
 import { CartScreen } from '../screens/CartScreen';
 import { getProducts } from '../actions/actions';
 
-export const HomeScreen = ( { cartOpen, setCartOpen }) => {
+export const HomeScreen = ( { cartOpen, setCartOpen } ) => {
   const dispatch = useDispatch();
   const allProducts = useSelector( ( state ) => state.products );
   
@@ -16,32 +16,31 @@ export const HomeScreen = ( { cartOpen, setCartOpen }) => {
   
   return (
     <>
-
-          <Grid container
-            spacing={3}
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
-            style={{ minHeight: '100vh' }}
-          >
-                {
-                  allProducts.map( product => (
-                    <Grid item xs={3} sx={{
-                      mx: 'auto',
-                      p: 1,
-                      m: 1,
-                    }}>
-                      <ProductCard
-                        key={ product.id }
-                        id={ product.id }
-                        title={ product.name }
-                        image={ product.imageURL }
-                        price={ product.price }
-                      />
-                    </Grid>
-                  ))
-                }
-          </Grid>
+      <Grid container
+        spacing={3}
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: '100vh' }}
+      >
+            {
+              allProducts.map( product => (
+                <Grid item xs={9} md={3} sx={{
+                  mx: 'auto',
+                  p: 1,
+                  m: 1,
+                }}>
+                  <ProductCard
+                    key={ product.id }
+                    id={ product.id }
+                    title={ product.name }
+                    image={ product.imageURL }
+                    price={ product.price }
+                  />
+                </Grid>
+              ))
+            }
+      </Grid>
       <CartScreen cartOpen={ cartOpen } setCartOpen={ setCartOpen } />
     </>
   );

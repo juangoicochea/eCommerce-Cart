@@ -9,8 +9,19 @@ const saveCart = async (req, res) => {
         console.log( error );
         res.status(500).json({message: 'Server Error'});
     }
-} 
+}
+
+const getCarts = async (req, res) => {
+    try {
+        const carts = await Cart.findAll({});
+        return res.json( carts );
+    } catch (error) {
+        console.error( error );
+        res.status(500).json({message: 'Server Error'})
+    }
+}
 
 module.exports = {
-    saveCart
+    saveCart,
+    getCarts
 }

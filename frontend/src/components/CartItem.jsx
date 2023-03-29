@@ -23,6 +23,12 @@ const useStyles = makeStyles(() => ({
         cursor: "pointer",
         width: 20,
         margin: 3,
+    },
+    close: {
+        position: "absolute!important",
+        backgroundColor: "#ccc!important",
+        fontWeight: "800!important",
+        minWidth: "36px!important"
     }
 }));
 
@@ -47,7 +53,7 @@ export const CartItem = ( { id, title, image, price, quantity=0 }) => {
 
     return (
         <Card className={classes.root}>
-            <Button onClick={() => dispatch( deletCartItem( id ))}>X</Button>
+            <Button size='small' className={classes.close} onClick={() => dispatch( deletCartItem( id ))}>X</Button>
         <CardMedia
             className={classes.cover}
             image={ image }

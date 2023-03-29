@@ -45,3 +45,20 @@ export const saveCart = ( payload ) => {
         return json;
     }
 }
+
+export const getCarts = () => {
+    return async ( dispatch ) => {
+        const json = await axios('/carts');
+        dispatch( {
+            type: 'GET_CARTS',
+            payload: json.data
+        });
+    }
+}
+
+export const selectCart = ( payload ) => {
+    return {
+        type: 'SELECT_CART',
+        payload
+    }
+}

@@ -1,6 +1,7 @@
 const initialState = {
     products: [],
-    cart: []
+    cart: [],
+    savedCarts: []
 }
 
 export const rootReducer = ( state=initialState, action ) => {
@@ -37,13 +38,21 @@ export const rootReducer = ( state=initialState, action ) => {
                 ...state
             }
         case 'DELET_CART_ITEM':
-            console.log('Enter to delete reducer')
             const filtered = state.cart.filter(item => item.id !== action.payload);
             return {
                 ...state,
                 cart: filtered
             }
-    
+        case 'GET_CARTS':
+            return {
+                ...state,
+                savedCarts: action.payload
+            }
+        case 'SELECT_CART':
+            return {
+                ...state,
+                cart: action.payload
+            }
         default:
             return state;
     }

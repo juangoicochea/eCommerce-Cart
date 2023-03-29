@@ -76,12 +76,17 @@ export const Navbar = ( { setCartOpen } ) => {
               }}
             >
               <MenuItem key='Shop' onClick={handleCloseNavMenu}>
-                <Link to='/Shop'>
+                <Link to='/'>
                   <Typography textAlign="center">Shop</Typography>
                 </Link>
               </MenuItem>
               <MenuItem key='Cart' onClick={handleCloseNavMenu}>
                 <Button onClick={() => setCartOpen( true )}>Cart</Button>
+              </MenuItem>
+              <MenuItem key='Saved Carts' onClick={handleCloseNavMenu}>
+                <Link to='/cartsaved'>
+                  <Typography textAlign="center">Saved Carts</Typography>
+                </Link>
               </MenuItem>
             </Menu>
           </Box>
@@ -105,7 +110,7 @@ export const Navbar = ( { setCartOpen } ) => {
             eCommerce
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Link to='/Shop'>
+            <Link to='/'>
               <Button
                 key='Shop'
                 onClick={handleCloseNavMenu}
@@ -114,13 +119,22 @@ export const Navbar = ( { setCartOpen } ) => {
                 Shop
               </Button>
             </Link>
+            <Button
+              key='Cart'
+              onClick={() => setCartOpen( true )}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Cart
+            </Button>
+            <Link to='/cartsaved'>
               <Button
-                key='Cart'
-                onClick={() => setCartOpen( true )}
+                key='Shop'
+                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                Cart
+                Saved Carts
               </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>

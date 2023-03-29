@@ -7,6 +7,9 @@ import { saveCart } from '../actions/actions';
 const useStyles = makeStyles({
   paper: {
     width: 500,
+    '@media (max-width: 780px)': {
+      width: '85%'
+    },
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
     padding: 20,
@@ -44,7 +47,11 @@ export const CartScreen = ( { cartOpen, setCartOpen } ) => {
             />
           ))
         }
-        <Button onClick={handleSaveCart} variant="contained" sx={{ marginTop: 3 }}>Save Cart</Button>
+        {
+          !cartProducts[0] ? 
+            <Typography component="div">Add some products to cart</Typography>
+            :  <Button onClick={handleSaveCart} variant="contained" sx={{ marginTop: 3 }}>Save Cart</Button>
+        }
     </Drawer>
   );
 }
