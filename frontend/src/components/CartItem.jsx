@@ -77,7 +77,7 @@ export const CartItem = ( { id, title, image, price, quantity=0 }) => {
                 Quantity
                 </Typography>
             </Grid>
-            <Grid direction="row" container xs={3} sm={3} md={3} lg={3}>
+            <Grid item direction="row" container xs={3} sm={3} md={3} lg={3}>
                 <button onClick={decrementTotalQuantity} className={classes.span}>-</button>
                 <Typography variant="h6" component="div">
                     { totalQuantity }
