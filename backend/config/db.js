@@ -41,7 +41,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Product, Cart } = sequelize.models;
 
 // Importamos la data a la DB
-// Product.bulkCreate(productData).then(() => console.log("Data import success"));
+Product.bulkCreate(productData).then(() => console.log("Data import success"));
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
