@@ -9,6 +9,11 @@ export const CartsSaved = ( { cartOpen, setCartOpen } ) => {
   const dispatch = useDispatch();
   const savedCarts = useSelector( ( state ) => state.savedCarts );
 
+  const handleSelectCart = ( data ) => {
+    dispatch( selectCart( data ));
+    setCartOpen( true );
+  }
+
   useEffect(() => {
     dispatch( getCarts() );
   }, [dispatch]);
@@ -43,7 +48,7 @@ export const CartsSaved = ( { cartOpen, setCartOpen } ) => {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button onClick={() => dispatch( selectCart( cart.data ))} size="small" color="primary">
+              <Button onClick={() => handleSelectCart( cart.data )} size="small" color="primary">
                 Select Cart
               </Button>
             </CardActions>
