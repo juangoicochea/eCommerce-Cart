@@ -1,7 +1,8 @@
 const initialState = {
     products: [],
     cart: [],
-    savedCarts: []
+    savedCarts: [],
+    itemsOnCart: 0
 }
 
 export const rootReducer = ( state=initialState, action ) => {
@@ -52,6 +53,12 @@ export const rootReducer = ( state=initialState, action ) => {
             return {
                 ...state,
                 cart: action.payload
+            }
+        case 'COUNT_ITEMS_ON_CART':
+            const countItems = state.cart.reduce( ( accum, item ) => accum + item.quantity, 0 );
+            return {
+                ...state,
+                itemsOnCart: countItems
             }
         default:
             return state;

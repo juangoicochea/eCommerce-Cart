@@ -1,18 +1,32 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { makeStyles } from '@mui/styles';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { countItemsOnCart } from '../actions/actions';
+
+const useStyles = makeStyles(() => ({
+  cartItem: {
+    display: 'flex!important'
+  },
+  numberItems: {
+    backgroundColor: 'darkorange',
+    padding: '0 6px',
+    borderRadius: '50%',
+    fontSize: '10px',
+    marginLeft: '-15px',
+    marginTop: '6px'
+  }
+}));
 
 export const Navbar = ( { setCartOpen } ) => {
+  const dispatch = useDispatch();
+  const itemsOnCart = useSelector( ( state ) => state.itemsOnCart );
+  const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -22,6 +36,11 @@ export const Navbar = ( { setCartOpen } ) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  useEffect(() => {
+    dispatch( countItemsOnCart() )
+  });
+  
 
   return (
     <AppBar position="static">
@@ -80,13 +99,16 @@ export const Navbar = ( { setCartOpen } ) => {
                   <Typography textAlign="center">Shop</Typography>
                 </Link>
               </MenuItem>
-              <MenuItem key='Cart' onClick={handleCloseNavMenu}>
-                <Button onClick={() => setCartOpen( true )}>Cart</Button>
-              </MenuItem>
               <MenuItem key='Saved Carts' onClick={handleCloseNavMenu}>
                 <Link to='/cartsaved'>
                   <Typography textAlign="center">Saved Carts</Typography>
                 </Link>
+              </MenuItem>
+              <MenuItem key='Cart' onClick={handleCloseNavMenu}>
+                <Button onClick={() => setCartOpen( true )}>Cart</Button>
+                <Button onClick={() => setCartOpen( true )}>
+                  <ShoppingCartIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                </Button>
               </MenuItem>
             </Menu>
           </Box>
@@ -119,13 +141,6 @@ export const Navbar = ( { setCartOpen } ) => {
                 Shop
               </Button>
             </Link>
-            <Button
-              key='Cart'
-              onClick={() => setCartOpen( true )}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Cart
-            </Button>
             <Link to='/cartsaved'>
               <Button
                 key='Shop'
@@ -135,6 +150,16 @@ export const Navbar = ( { setCartOpen } ) => {
                 Saved Carts
               </Button>
             </Link>
+            <Button
+              className={classes.cartItem}
+              key='Cart'
+              onClick={() => setCartOpen( true )}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            > 
+              <ShoppingCartIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+              <span className={classes.numberItems}>{ itemsOnCart }</span>
+            </Button>
+
           </Box>
         </Toolbar>
       </Container>

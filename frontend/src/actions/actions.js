@@ -62,3 +62,10 @@ export const selectCart = ( payload ) => {
         payload
     }
 }
+
+export const countItemsOnCart = () => {
+    console.log( 'countItemsOnCart' )
+    return {
+        type: 'COUNT_ITEMS_ON_CART',
+    }
+}

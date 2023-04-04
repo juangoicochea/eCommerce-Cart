@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import { ProductCard } from '../components/ProductCard';
 import { CartScreen } from '../screens/CartScreen';
 import { getProducts } from '../actions/actions';
 
-export const HomeScreen = ( { cartOpen, setCartOpen } ) => {
+export const HomeScreen = ( { cartOpen, setCartOpen, itemsOnCart, setItemsOnCart } ) => {
   const dispatch = useDispatch();
   const allProducts = useSelector( ( state ) => state.products );
   
@@ -36,6 +35,8 @@ export const HomeScreen = ( { cartOpen, setCartOpen } ) => {
                     title={ product.name }
                     image={ product.imageURL }
                     price={ product.price }
+                    itemsOnCart={ itemsOnCart }
+                    setItemsOnCart={ setItemsOnCart }
                   />
                 </Grid>
               ))

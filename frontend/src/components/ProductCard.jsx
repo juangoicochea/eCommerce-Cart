@@ -1,15 +1,17 @@
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../actions/actions';
+import { addToCart, countItemsOnCart } from '../actions/actions';
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material/';
 
 export const ProductCard = ({ id, title, image, price }) => {
   const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({
+      id, title, image, price
+    }));
+    dispatch( countItemsOnCart() );
+  }
 
   return (
     <Card>
@@ -28,10 +30,7 @@ export const ProductCard = ({ id, title, image, price }) => {
       </CardContent>
       <CardActions>
         <Button
-          onClick={() =>
-            dispatch(addToCart({
-              id, title, image, price
-            }))}
+          onClick={handleAddToCart}
           size="small">Add to Cart</Button>
       </CardActions>
     </Card>
