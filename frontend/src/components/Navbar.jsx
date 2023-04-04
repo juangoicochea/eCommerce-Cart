@@ -107,7 +107,8 @@ export const Navbar = ( { setCartOpen } ) => {
               <MenuItem key='Cart' onClick={handleCloseNavMenu}>
                 <Button onClick={() => setCartOpen( true )}>Cart</Button>
                 <Button onClick={() => setCartOpen( true )}>
-                  <ShoppingCartIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                  <ShoppingCartIcon sx={{ display: { md: 'flex' }, mr: 1 }} />
+                  <span className={classes.numberItems}>{ itemsOnCart }</span>
                 </Button>
               </MenuItem>
             </Menu>
