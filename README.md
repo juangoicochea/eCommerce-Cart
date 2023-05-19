@@ -1,7 +1,7 @@
 # eCommerce-Cart
 
-<img src="https://user-images.githubusercontent.com/84482789/217907376-cdab36cc-53c3-4eec-8931-8f1a5a3aeb68.jpg" width="49%"></img>
-<img src="https://user-images.githubusercontent.com/84482789/217907376-cdab36cc-53c3-4eec-8931-8f1a5a3aeb68.jpg" width="49%"></img> 
+<img src="https://github.com/juangoicochea/eCommerce-Cart/assets/84482789/d86ac6f1-9680-44be-b983-9fdbd39af2e8" width="49%"></img>
+<img src="https://github.com/juangoicochea/eCommerce-Cart/assets/84482789/07fb341a-9807-42cc-9b62-528611f464bc" width="49%"></img> 
 
 ## 📝Description:
 
